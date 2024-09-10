@@ -1,0 +1,25 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://127.0.0.1:9000" #Servidor que valida el token
+      client:
+        registration:
+          client-app:  #nombre de la aplicacion a registrar
+            provider: spring
+            client-id: client-app  #clientId o usernama
+            client-secret: 12345
+            authorization-grant-type: authorization_code #tipo de autorizacion
+            redirect-uri: "http://127.0.0.1:8080/authorized"
+            scope:
+              - openid
+              - profile
+              - read
+              - write
+            client-name: client-app
+        provider:
+          spring:
+            issuer-uri: "http://127.0.0.1:9000" #quien es el servidor de autenticacion   
+
+logging.level.web: DEBUG   
